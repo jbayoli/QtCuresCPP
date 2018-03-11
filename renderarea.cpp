@@ -33,15 +33,22 @@ void RenderArea::paintEvent(QPaintEvent */*event*/)
 
     QPoint center = this->rect().center();
 
+    QPointF prevPoint = compute(0);
+    QPoint prevPixel;
+    prevPixel.setX(static_cast<int>(prevPoint.x() * static_cast<qreal>(m_scale) + center.x()));
+    prevPixel.setY(static_cast<int>(prevPoint.y() * static_cast<qreal>(m_scale) + center.y()));
+
     float step = m_intervalLenght / m_stepCount;
     for(float t = 0.0f; t < m_intervalLenght; t += step) {
         QPointF point = compute(t);
 
-        QPointF pixel;
-        pixel.setX(point.x() * static_cast<qreal>(m_scale) + center.x());
-        pixel.setY(point.y() * static_cast<qreal>(m_scale) + center.y());
+        QPoint pixel;
+        pixel.setX(static_cast<int>(point.x() * static_cast<qreal>(m_scale) + center.x()));
+        pixel.setY(static_cast<int>(point.y() * static_cast<qreal>(m_scale) + center.y()));
 
-        painter.drawPoint(pixel);
+        painter.drawLine(pixel, prevPixel);
+
+        prevPixel = pixel;
     }
 }
 
@@ -49,8 +56,8 @@ QPointF RenderArea::computeAstroid(float t)
 {
     float cos_t = cos(t);
     float sin_t = sin(t);
-    float x = 2 * static_cast<float>(pow(cos_t, 3));
-    float y = 2 * static_cast<float>(pow(sin_t, 3));
+    float x = 2.0f * static_cast<float>(pow(cos_t, 3));
+    float y = 2.0f * static_cast<float>(pow(sin_t, 3));
 
     return QPointF(static_cast<qreal>(x),static_cast<qreal>(y));
 }
@@ -132,7 +139,7 @@ void RenderArea::onShapeChange()
 
     case Line:
         m_intervalLenght = 1.0f;
-        m_scale = 50.0f;
+        m_scale = 100.0f;
         m_stepCount = 128;
         break;
     }
