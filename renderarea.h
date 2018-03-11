@@ -15,7 +15,7 @@ public:
     QSize sizeHint() const Q_DECL_OVERRIDE;
     void setBackgroundColor(QColor color) { m_backgroundColor = color; }
     QColor backgroundColor() const { return  m_backgroundColor; }
-    void setShape (ShapeType shape) { m_shape = shape; }
+    void setShape (ShapeType shape) { m_shape = shape; onShapeChange(); }
     ShapeType shape() const { return  m_shape; }
 
 protected:
@@ -27,10 +27,19 @@ public slots:
 
 private:
     QPointF computeAstroid(float t);
+    QPointF computeCycloid(float t);
+    QPointF computeHygens(float t);
+    QPointF computeHypo(float t);
+    QPointF compute(float t);
+    void onShapeChange();
 
     QColor m_backgroundColor;
     QColor m_shapeColor;
     ShapeType m_shape;
+
+    float m_intervalLenght;
+    float m_scale;
+    int m_stepCount;
 };
 
 #endif // RENDERAREA_H
