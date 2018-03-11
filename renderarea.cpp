@@ -20,10 +20,8 @@ QSize RenderArea::sizeHint() const
     return QSize(400, 200);
 }
 
-void RenderArea::paintEvent(QPaintEvent *event)
+void RenderArea::paintEvent(QPaintEvent */*event*/)
 {
-    Q_UNUSED(event);
-
     QPainter painter(this);
     painter.setRenderHint(QPainter::Antialiasing, true);
 
@@ -59,15 +57,27 @@ QPointF RenderArea::computeAstroid(float t)
 
 QPointF RenderArea::computeCycloid(float t)
 {
-
+    return QPointF(static_cast<qreal>(1.5f * (1 - cos(t))), //x
+            static_cast<qreal>(1.5f * (t - sin(t))) //y
+    );
 }
 
 QPointF RenderArea::computeHygens(float t)
 {
-
+    return  QPointF(static_cast<qreal>(4 * (3 * cos(t) -cos(3 * t))), //x
+                    static_cast<qreal>(4 * (3 * sin(t) - sin(3* t))) //y
+    );
 }
 
 QPointF RenderArea::computeHypo(float t)
+{
+    return QPointF(
+                static_cast<qreal>(1.5f * (2 * cos(t) + cos(2 * t))), //x
+                static_cast<qreal>(1.5f * (2 * sin(t) - sin(2 * t))) //y
+    );
+}
+
+QPointF RenderArea::computeFutureCurve(float t)
 {
 
 }
@@ -77,19 +87,18 @@ QPointF RenderArea::compute(float t)
     switch (m_shape) {
     case Astroid:
         return computeAstroid(t);
-        break;
 
     case Cycloid:
         return  computeCycloid(t);
-        break;
 
     case HuygensCycloid:
         return  computeHygens(t);
-        break;
 
     case HypoCycloid:
         return  computeHypo(t);
-        break;
+
+    case FutureCurve:
+        return computeFutureCurve(t);
     }
     return QPointF(0, 0);
 }
@@ -104,14 +113,24 @@ void RenderArea::onShapeChange()
         break;
 
     case Cycloid:
-
+        m_scale = 4.0f;
+        m_intervalLenght = static_cast<float>(6 * M_PI);
+        m_stepCount = 128;
         break;
 
     case HuygensCycloid:
-
+        m_scale = 4.0f;
+        m_intervalLenght = static_cast<float>(4 * M_PI);
+        m_stepCount = 256;
         break;
 
     case HypoCycloid:
+        m_scale = 15.0f;
+        m_intervalLenght = static_cast<float>(2 * M_PI);
+        m_stepCount = 256;
+        break;
+
+    case FutureCurve:
 
         break;
     }
