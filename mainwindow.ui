@@ -6,75 +6,176 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>473</width>
-    <height>381</height>
+    <width>632</width>
+    <height>389</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>MainWindow</string>
   </property>
   <widget class="QWidget" name="centralWidget">
-   <layout class="QGridLayout" name="gridLayout">
-    <item row="0" column="0">
-     <layout class="QHBoxLayout" name="horizontalLayout">
-      <item>
-       <widget class="RenderArea" name="renderArea" native="true"/>
-      </item>
-      <item>
-       <layout class="QVBoxLayout" name="verticalLayout">
-        <item>
-         <widget class="QPushButton" name="btnAstroid">
-          <property name="text">
-           <string>Astroid</string>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QPushButton" name="btnCycloid">
-          <property name="text">
-           <string>Cycloid</string>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QPushButton" name="btnHygens">
-          <property name="text">
-           <string>Hygens</string>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QPushButton" name="btnHypo">
-          <property name="text">
-           <string>Hypo Cycloid</string>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QPushButton" name="btnLine">
-          <property name="text">
-           <string>Line</string>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <spacer name="verticalSpacer">
-          <property name="orientation">
-           <enum>Qt::Vertical</enum>
-          </property>
-          <property name="sizeHint" stdset="0">
-           <size>
-            <width>20</width>
-            <height>40</height>
-           </size>
-          </property>
-         </spacer>
-        </item>
-       </layout>
-      </item>
-     </layout>
-    </item>
-   </layout>
+   <widget class="RenderArea" name="renderArea" native="true">
+    <property name="geometry">
+     <rect>
+      <x>92</x>
+      <y>40</y>
+      <width>231</width>
+      <height>215</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="btnLine">
+    <property name="geometry">
+     <rect>
+      <x>470</x>
+      <y>166</y>
+      <width>68</width>
+      <height>32</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Line</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="btnAstroid">
+    <property name="geometry">
+     <rect>
+      <x>470</x>
+      <y>30</y>
+      <width>86</width>
+      <height>32</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Astroid</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="btnHypo">
+    <property name="geometry">
+     <rect>
+      <x>470</x>
+      <y>132</y>
+      <width>123</width>
+      <height>32</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Hypo Cycloid</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="btnHygens">
+    <property name="geometry">
+     <rect>
+      <x>470</x>
+      <y>98</y>
+      <width>88</width>
+      <height>32</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Hygens</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="btnCycloid">
+    <property name="geometry">
+     <rect>
+      <x>470</x>
+      <y>64</y>
+      <width>88</width>
+      <height>32</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Cycloid</string>
+    </property>
+   </widget>
+   <widget class="QWidget" name="layoutWidget">
+    <property name="geometry">
+     <rect>
+      <x>450</x>
+      <y>200</y>
+      <width>117</width>
+      <height>26</height>
+     </rect>
+    </property>
+    <layout class="QHBoxLayout" name="horizontalLayout">
+     <item>
+      <widget class="QLabel" name="label">
+       <property name="text">
+        <string>Scale :</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QDoubleSpinBox" name="spinScale">
+       <property name="decimals">
+        <number>1</number>
+       </property>
+       <property name="singleStep">
+        <double>0.100000000000000</double>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </widget>
+   <widget class="QWidget" name="layoutWidget">
+    <property name="geometry">
+     <rect>
+      <x>420</x>
+      <y>230</y>
+      <width>183</width>
+      <height>26</height>
+     </rect>
+    </property>
+    <layout class="QHBoxLayout" name="horizontalLayout_2">
+     <item>
+      <widget class="QLabel" name="label_2">
+       <property name="text">
+        <string>Interval Lenght :</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QDoubleSpinBox" name="spinInterval">
+       <property name="maximum">
+        <double>100.000000000000000</double>
+       </property>
+       <property name="singleStep">
+        <double>0.100000000000000</double>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </widget>
+   <widget class="QWidget" name="">
+    <property name="geometry">
+     <rect>
+      <x>430</x>
+      <y>260</y>
+      <width>139</width>
+      <height>26</height>
+     </rect>
+    </property>
+    <layout class="QHBoxLayout" name="horizontalLayout_3">
+     <item>
+      <widget class="QLabel" name="stepCount">
+       <property name="text">
+        <string>Step Count :</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QSpinBox" name="spinCount">
+       <property name="maximum">
+        <number>512</number>
+       </property>
+       <property name="singleStep">
+        <number>1</number>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </widget>
   </widget>
   <widget class="QStatusBar" name="statusBar"/>
  </widget>
