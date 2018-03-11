@@ -8,7 +8,7 @@ class RenderArea : public QWidget
 {
     Q_OBJECT
 public:
-    enum ShapeType { Astroid, Cycloid, HuygensCycloid, HypoCycloid, FutureCurve };
+    enum ShapeType { Astroid, Cycloid, HuygensCycloid, HypoCycloid, Line };
 
     explicit RenderArea(QWidget *parent = nullptr);
     QSize minimumSizeHint() const Q_DECL_OVERRIDE;
@@ -30,7 +30,7 @@ private:
     QPointF computeCycloid(float t);
     QPointF computeHygens(float t);
     QPointF computeHypo(float t);
-    QPointF computeFutureCurve(float t);
+    QPointF computeLine(float t);
     QPointF compute(float t);
     void onShapeChange();
 

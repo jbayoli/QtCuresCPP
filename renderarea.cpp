@@ -77,9 +77,9 @@ QPointF RenderArea::computeHypo(float t)
     );
 }
 
-QPointF RenderArea::computeFutureCurve(float t)
+QPointF RenderArea::computeLine(float t)
 {
-
+    return QPointF(static_cast<qreal>(1 - t), static_cast<qreal>( 1 -t));
 }
 
 QPointF RenderArea::compute(float t)
@@ -97,8 +97,8 @@ QPointF RenderArea::compute(float t)
     case HypoCycloid:
         return  computeHypo(t);
 
-    case FutureCurve:
-        return computeFutureCurve(t);
+    case Line:
+        return computeLine(t);
     }
     return QPointF(0, 0);
 }
@@ -130,8 +130,10 @@ void RenderArea::onShapeChange()
         m_stepCount = 256;
         break;
 
-    case FutureCurve:
-
+    case Line:
+        m_intervalLenght = 1.0f;
+        m_scale = 50.0f;
+        m_stepCount = 128;
         break;
     }
 }

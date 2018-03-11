@@ -12,7 +12,7 @@ class MainWindow : public QMainWindow
     Q_OBJECT
 
 public:
-    explicit MainWindow(QWidget *parent = 0);
+    explicit MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
 private slots:
@@ -23,6 +23,8 @@ private slots:
     void on_btnHygens_clicked();
 
     void on_btnHypo_clicked();
+
+    void on_btnLine_clicked();
 
 private:
     Ui::MainWindow *ui;
