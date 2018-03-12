@@ -12,12 +12,12 @@ RenderArea::RenderArea(QWidget *parent) : QWidget(parent),
 
 QSize RenderArea::minimumSizeHint() const
 {
-    return QSize(100, 100);
+    return QSize(400, 400);
 }
 
 QSize RenderArea::sizeHint() const
 {
-    return QSize(400, 200);
+    return QSize(400, 400);
 }
 
 void RenderArea::paintEvent(QPaintEvent */*event*/)

@@ -23,6 +23,8 @@ public:
     float intervalLenght() const { return m_intervalLenght; }
     int stepCount() const { return m_stepCount; }
     void setStepCount(int count) { m_stepCount = count; repaint(); }
+    QColor shapeColor() const { return  m_shapeColor; }
+    void setShapeColor(const QColor &shapeColor) { m_shapeColor = shapeColor; }
 
 protected:
     void paintEvent(QPaintEvent *event) Q_DECL_OVERRIDE;
