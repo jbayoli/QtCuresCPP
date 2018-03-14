@@ -86,7 +86,41 @@ QPointF RenderArea::computeHypo(float t)
 
 QPointF RenderArea::computeLine(float t)
 {
-    return QPointF(static_cast<qreal>(1 - t), static_cast<qreal>( 1 -t));
+    return QPointF(static_cast<qreal>(1 - t), //x
+                   static_cast<qreal>( 1 -t) //y
+    );
+}
+
+QPointF RenderArea::computeCircle(float t)
+{
+    return QPointF(static_cast<qreal>(cos(t)), //x
+                   static_cast<qreal>(sin(t)) //y
+    );
+}
+
+QPointF RenderArea::computeEllipse(float t)
+{
+    return  QPointF (
+                static_cast<qreal>(2.0f * cos(t)), //x
+                static_cast<qreal>(1.1f * sin(t)) //y
+    );
+}
+
+QPointF RenderArea::computeFancy(float t)
+{
+    float x = 11.0f * cos(t) - 6.0f * cos((11.0f * t) / 6.0f);
+    float y = 11.0f * sin(t) - 6.0f * sin((11.0f *t) / 6.0f);
+    return QPointF(static_cast<qreal>(x), static_cast<qreal>(y));
+}
+
+QPointF RenderArea::computerStarFish(float t)
+{
+    float R = 5.0f, r = 3.0f, d = 5.0f;
+
+    float x = (R - r) * cos(t) + d * cos((t*(R-r))/r);
+    float y = (R - r) * sin(t) - d * sin((t*(R-r))/r);
+
+    return QPointF(static_cast<qreal>(x), static_cast<qreal>(y));
 }
 
 QPointF RenderArea::compute(float t)
@@ -106,7 +140,20 @@ QPointF RenderArea::compute(float t)
 
     case Line:
         return computeLine(t);
+
+    case Circle:
+        return computeCircle(t);
+
+    case Ellipse:
+        return computeEllipse(t);
+
+    case Fancy:
+        return computeFancy(t);
+
+    case Starfish:
+        return  computerStarFish(t);
     }
+
     return QPointF(0, 0);
 }
 
@@ -114,33 +161,57 @@ void RenderArea::onShapeChange()
 {
     switch (m_shape) {
     case Astroid:
-        m_scale = 40.0f;
+        m_scale = 90.0f;
         m_intervalLenght = static_cast<float>(2 * M_PI);
         m_stepCount = 256;
         break;
 
     case Cycloid:
-        m_scale = 4.0f;
-        m_intervalLenght = static_cast<float>(6 * M_PI);
+        m_scale = 10.0f;
+        m_intervalLenght = static_cast<float>(4 * M_PI);
         m_stepCount = 128;
         break;
 
     case HuygensCycloid:
-        m_scale = 4.0f;
+        m_scale = 12.0f;
         m_intervalLenght = static_cast<float>(4 * M_PI);
         m_stepCount = 256;
         break;
 
     case HypoCycloid:
-        m_scale = 15.0f;
+        m_scale = 40.0f;
         m_intervalLenght = static_cast<float>(2 * M_PI);
         m_stepCount = 256;
         break;
 
     case Line:
-        m_intervalLenght = 1.0f;
+        m_intervalLenght = 2.0f;
         m_scale = 100.0f;
         m_stepCount = 128;
         break;
-    }
+
+    case Circle:
+        m_scale = 150.0f;
+        m_intervalLenght = static_cast<float>(2 * M_PI);
+        m_stepCount = 128;
+        break;
+
+    case Ellipse:
+        m_scale = 75.0f;
+        m_intervalLenght = static_cast<float>(2 * M_PI);
+        m_stepCount = 256;
+        break;
+
+    case Fancy:
+        m_scale = 10.0f;
+        m_intervalLenght = static_cast<float>(12 * M_PI);
+        m_stepCount = 512;
+        break;
+
+    case Starfish:
+        m_scale = 25.0f;
+        m_intervalLenght = static_cast<float>(6 * M_PI);
+        m_stepCount = 256;
+        break;
+    }   
 }
