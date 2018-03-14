@@ -36,14 +36,6 @@ private slots:
 
     void on_btnLineColor_clicked();
 
-    void on_btnCircle_clicked();
-
-    void on_btnEllipse_clicked();
-
-    void on_btnFancy_clicked();
-
-    void on_btnStarfish_clicked();
-
 private:
     void updateUi();
 
